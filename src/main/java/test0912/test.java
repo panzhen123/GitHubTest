@@ -11,6 +11,12 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//测试增加代码
+
+//123123123123
+
+//432433424234
+
 public class test extends TextStatProvider {
 
     int complexWord = 0;
