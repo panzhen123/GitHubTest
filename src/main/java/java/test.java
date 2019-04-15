@@ -10,6 +10,8 @@ public class test {
         System.out.println("test1(" + val + ")");
         System.out.println("result: " + (val < 1));
         return val < 1;
+		
+		//pan
     }
     static boolean test2(int val) {
         System.out.println("test2(" + val + ")");

@@ -31,6 +31,7 @@ public class GitHubTest {
         //getGitHubRepoForkUser();
         //获取仓库贡献者
         //getGitHubRepoContributors();
+		System.out.println("123"):
     }
     public static void getGitHub(){
         try {
