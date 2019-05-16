@@ -31,7 +31,7 @@ public class GitHubTest {
         //getGitHubRepoForkUser();
         //获取仓库贡献者
         //getGitHubRepoContributors();
-		System.out.println("123"):
+		
     }
     public static void getGitHub(){
         try {
@@ -81,6 +81,49 @@ public class GitHubTest {
             System.out.println(e.getMessage());
         }
     }
+	public static void getGitHubPullRequest(){
+		try{
+            GitHub github = GitHub.connectUsingPassword(login,passwd);
+            GHRepository ghRepository = github.getRepository("iluwatar/java-design-patterns");
+            List<GHPullRequest> pullRequests = ghRepository.getPullRequests(GHIssueState.CLOSED);
+            Iterator<GHPullRequest> iterator = pullRequests.iterator();
+            int count =0;
+            while (iterator.hasNext()){
+                System.out.println(++count);
+//                System.out.println(iterator.next());
+                GHPullRequest ghPullRequest = iterator.next();
+                System.out.println(ghPullRequest.getUrl());
+                System.out.println(ghPullRequest.getBody());
+                System.out.println(ghPullRequest.getCreatedAt());
+                System.out.println(ghPullRequest.getUpdatedAt());
+                System.out.println(ghPullRequest.getClosedAt());
+                long diff = ghPullRequest.getClosedAt().getTime() - ghPullRequest.getCreatedAt().getTime();
+                // 计算差多少天
+                long day = diff / nd;
+                // 计算差多少小时
+                long hour = diff % nd / nh;
+                // 计算差多少分钟
+                long min = diff % nd % nh / nm;
+                System.out.println(day + "天" + hour + "小时" + min + "分钟");
+
+                PagedIterable<GHPullRequestCommitDetail> requestCommitDetails = ghPullRequest.listCommits();
+                PagedIterator<GHPullRequestCommitDetail> iterator1 = requestCommitDetails.iterator();
+                while (iterator1.hasNext()){
+                    GHPullRequestCommitDetail next = iterator1.next();
+                    System.out.println(next.getApiUrl());
+                    System.out.println(next.getCommentsUrl());
+                    System.out.println(next.getUrl());
+
+                }
+
+            }
+
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+	}
+	
 
     public static void getGitHubPullRequestInfo(){
         try{
